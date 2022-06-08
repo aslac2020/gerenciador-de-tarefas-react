@@ -3,21 +3,39 @@ import logo from "../assets/icones/devaria-logo.svg";
 import mail from "../assets/icones/mail.svg";
 import lock from "../assets/icones/lock.svg";
 import { Input } from "../components/Input";
+import { executeRequisicao } from "../services/api";
 
 export const Login = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
+  const [msgErro, setMsgErro] = useState("");
   const [isLoading, setLoading] = useState(false);
 
-  const executeLogin = (event) => {
-    event.preventDefault();
-    setLoading(true);
-    console.log("login", login);
-    console.log("password", password);
+  const executeLogin = async (event) => {
+    try {
+      event.preventDefault();
+      setLoading(true);
+      setMsgErro('');
 
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
+      const body = {
+        login,
+        password,
+      };
+
+      const result = await executeRequisicao("login", "POST", body);
+      if(result?.data?.token){
+        localStorage.setItem('accessToken', result.data.token);
+        localStorage.setItem('usuarioNome', result.data.name);
+        localStorage.setItem('usuarioEmail', result.data.email);
+      }
+
+    } catch (e) {
+      if(e?.response?.data?.erro){
+        setMsgErro(e.response.data.erro);
+      }
+      console.error(e);
+    }
+    setLoading(false);
   };
 
   return (
@@ -43,6 +61,7 @@ export const Login = () => {
           value={password}
           setValue={setPassword}
         />
+        {msgErro && <p>{msgErro}</p>}
         <button onClick={executeLogin} disabled={isLoading}>
           {isLoading === true ? "...carregando" : "Entrar"}
         </button>
