@@ -5,7 +5,7 @@ import lock from "../assets/icones/lock.svg";
 import { Input } from "../components/Input";
 import { executeRequisicao } from "../services/api";
 
-export const Login = () => {
+export const Login = props => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [msgErro, setMsgErro] = useState("");
@@ -27,6 +27,7 @@ export const Login = () => {
         localStorage.setItem('accessToken', result.data.token);
         localStorage.setItem('usuarioNome', result.data.name);
         localStorage.setItem('usuarioEmail', result.data.email);
+        props.setAccessToken(result.data.token)
       }
 
     } catch (e) {
