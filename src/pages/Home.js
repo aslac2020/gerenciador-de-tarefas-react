@@ -1,5 +1,8 @@
 import React from "react";
+import { Filters } from "../components/Filters";
+import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
+import { Listagem } from "../components/Listagem";
 
 export const Home = (props) => {
 
@@ -13,6 +16,9 @@ export const Home = (props) => {
   return (
     <>
       <Header closeApp={closeApp} />
+      <Filters/>
+      <Listagem />
+      <Footer />
     </>
   );
 };
