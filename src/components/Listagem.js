@@ -1,11 +1,20 @@
 import React from "react";
 import listaVazia from "../assets/icones/listavazia.svg";
+import { Item } from "./Item"
 
-export const Listagem = () => {
+export const Listagem = (props) => {
+  const { tarefas } = props;
+
   return (
     <div className="container-listagem">
-      <img src={listaVazia} alt="Nenhuma tarefa encontrada" />
-      <p>Você ainda não possui tarefas cadastradas!</p>
+      {tarefas && tarefas.length > 0 ? 
+        tarefas?.map(tarefa => <Item tarefa={tarefa} key={tarefa.id}/>)       
+       : 
+        <>
+          <img src={listaVazia} alt="Nenhuma tarefa encontrada" />
+          <p>Você ainda não possui tarefas cadastradas!</p>
+        </>
+      }
     </div>
   );
 };
