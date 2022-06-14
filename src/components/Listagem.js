@@ -59,13 +59,15 @@ export const Listagem = (props) => {
 
   const deleteTask = async () => {
     try {
-
       if (!idTask) {
         setErro("Favor informar a tarefa a ser excluida");
         return;
       }
+      const body = {
+        idTask: idTask
+      };
 
-      await executeRequisicao('tasks/'+idTask, "delete");
+      await executeRequisicao('tasks/'+idTask, "delete", body);
       await getTasksWithFilter();
       setNameTask("");
       setDataEstimatedTask("");
