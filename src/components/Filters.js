@@ -37,15 +37,15 @@ export const Filters = props => {
         <div className="filtersMobile">
           <div>
             <label>Período de:</label>
-            <input type="date" />
+            <input type="date"  value={periodoDe} onChange={event => setPeriodoDe(event.target.value)} />
           </div>
           <div>
             <label>Período até:</label>
-            <input type="date" />
+            <input type="date" value={periodoAte} onChange={event => setPeriodoAte(event.target.value)} />
           </div>
           <div>
             <label>Status:</label>
-            <select>
+            <select value={status} onChange={event => setStatus(event.target.value)} >
               <option value={0}>Todas</option>
               <option value={1}>Ativas</option>
               <option value={2}>Concluidas</option>

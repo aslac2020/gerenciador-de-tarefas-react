@@ -21,7 +21,7 @@ export const executeRequisicao = (endpoint, metodo, body) => {
   return instance.request({
     url: endpoint,
     method: metodo,
-    data: body ? body : "",
+    data: body? body : "",
     headers: headers,
   });
 };

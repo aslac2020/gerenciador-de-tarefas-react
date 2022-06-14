@@ -4,7 +4,7 @@ import checked from "../assets/icones/checked.svg";
 const moment = require('moment');
 
 export const Item = (props) => {
-  const { tarefa } = props;
+  const { tarefa, selectTask } = props;
   const {dataEstimatedTask, name, dataConclusionTask} = tarefa;
 
   const getDataText = (dtConclusionTask, dtEstimatedTask) => {
@@ -18,7 +18,7 @@ export const Item = (props) => {
   }
 
   return (
-    <div className={"container-item " + (dataConclusionTask ? "" : "ativo")}>
+    <div className={"container-item " + (dataConclusionTask ? "" : "ativo")} onClick={() => dataConclusionTask ? null : selectTask(tarefa) }>
       <img 
       src={dataConclusionTask ? checked : notCheck} 
       alt={dataConclusionTask? "tarefa concluida" : "selecione a tarefa"} />

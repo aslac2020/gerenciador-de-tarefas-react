@@ -7,10 +7,12 @@ export const Header = (props) => {
   const nameUser = localStorage.getItem("usuarioNome");
   const firstName = nameUser?.split(" ")[0] || "";
 
+  const { showModal } = props;
+
   return (
     <div className="container-header">
       <img className="logo" src={logo} alt="Logo Devaria" />
-      <button><span>+</span>Adicionar tarefa</button>
+      <button onClick={showModal}><span>+</span>Adicionar tarefa</button>
       <div className="mobile">
         <span>Olá, {firstName}</span>
         <img className="iconeSair" src={exit} alt="Icone de Sair do App" onClick={props.closeApp} />
