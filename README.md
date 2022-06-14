@@ -1,4 +1,4 @@
-# Projeto WIDGET FEEDBACK
+# Projeto GERENCIADOR DE TAREFAS
 
 # Sobre o projeto
 
